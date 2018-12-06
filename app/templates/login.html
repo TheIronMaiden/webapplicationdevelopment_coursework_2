@@ -5,7 +5,7 @@
 <head>
   <title>Login page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="{{ url_for('static', filename='content/bootstrap.min.css') }}" rel="stylesheet" media="screen">
   <link rel="stylesheet" type="text/css" href="static/content/site.css" />
 </head>
 
@@ -17,24 +17,27 @@
       </div>
     </div>
     <hr />
-    <form action="" method="post" novalidate>
-      {{ form.hidden_tag() }}
-      <p>
-        {{ form.username.label }}<br>
-        {{ form.username(size=32) }}<br>
-        {% for error in form.username.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
-      </p>
-      <p>
-        {{ form.password.label }}<br>
-        {{ form.password(size=32) }}<br>
-        {% for error in form.password.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
-      </p>
-      <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-      <p>{{ form.submit() }}</p>
-    </form>
+    <div class="row">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-4">
+        <form action="" method="post" novalidate>
+          {{ form.hidden_tag() }}
+          {{ form.username.label }}<br>
+          {{ form.username(size=32) }}<br>
+          {% for error in form.username.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}
+          {{ form.password.label }}<br>
+          {{ form.password(size=32) }}<br>
+          {% for error in form.password.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}
+          <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+          <p>{{ form.submit() }}</p>
+        </form>
+      </div>
+    </div>
+
     <p> New User? <a href="{{ url_for('createlogin') }}">Click to Register!</a></p>
     {% endblock %}
